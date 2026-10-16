@@ -1,76 +1,399 @@
-ありがとうございます。現状いただいた依頼情報だけでは、完成版の高品質なホームページを作成するには不足しているため、まず分析と進め方を整理します。以下に「目的・ターゲット・デザイン方針・必要制作物・作業順序」をまとめ、未指定項目の仮案と質問を提示します。
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>クラブ名 - 黒とゴールドの高級感あるライブクラブ</title>
+  <style>
+    :root{
+      --bg: #0b0b0b;
+      --fg: #f5f5f5;
+      --gold: #d4a510;
+      --gold-dark: #b0850a;
+      --muted: #888;
+      --card: rgba(255,255,255,0.06);
+      --shadow: 0 10px 25px rgba(0,0,0,.4);
+    }
+    * {box-sizing: border-box}
+    html, body {margin:0; padding:0; height:100%}
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans", sans-serif;
+      color: var(--fg);
+      background: #000;
+      background-image: radial-gradient(circle at 20% -10%, rgba(212,165,0,.08), transparent 40px),
+                        radial-gradient(circle at 80% 0%, rgba(0,0,0,.2), transparent 40px);
+      background-color: #000;
+    }
+    /* Global layout */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      background: rgba(0,0,0,.85);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: saturate(1.2) blur(2px);
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-mark {
+      width: 34px; height: 34px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #000 0%, #2a2a2a 50%, #000 100%);
+      border: 2px solid var(--gold);
+      display: inline-block;
+      box-shadow: 0 0 0 2px rgba(212,165,0,.25);
+    }
+    .logo-name {
+      font-weight: 700;
+      letter-spacing: .5px;
+      font-size: 18px;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+    }
+    nav a {
+      color: #eee;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: all .2s ease;
+    }
+    nav a:hover {
+      background: rgba(212,165,0,.15);
+      color: #fff;
+    }
+    .cta {
+      background: linear-gradient(135deg, #111, #000);
+      border: 1px solid rgba(212,165,0,.5);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .cta.gold {
+      background: linear-gradient(135deg, #1b1b1b, #000);
+      color: #ffd56a;
+      border: 1px solid rgba(212,165,0,.8);
+      text-shadow: 0 1px 0 rgba(0,0,0,.3);
+    }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 72vh;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      text-align: center;
+      padding: 40px 20px 60px;
+      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), #000;
+    }
+    .hero-inner {
+      max-width: 1100px;
+      width: 100%;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(212,165,0,.15);
+      color: #ffd75c;
+      font-weight: 600;
+      font-size: 12px;
+      border: 1px solid rgba(212,165,0,.5);
+      margin-bottom: 16px;
+    }
+    .title {
+      font-size: clamp(28px, 5vw, 64px);
+      line-height: 1.08;
+      margin: 8px 0 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.7);
+    }
+    .subtitle {
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: #ddd;
+      margin: 0 auto 18px;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+    .hero-cta {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .btn.primary {
+      background: linear-gradient(135deg, #000, #0a0a0a 60%);
+      border: 1px solid rgba(212,165,0,.8);
+      color: #ffd56a;
+      text-shadow: 0 1px 0 rgba(0,0,0,.3);
+    }
+    .btn:hover { transform: translateY(-1px); background: rgba(255,255,255,.08) }
+    .scene {
+      position: relative;
+      width: 100%; height: 60vh;
+      max-height: 520px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: var(--shadow);
+      background: #000;
+    }
+    /* Section styles */
+    section { padding: 64px 20px; }
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 28px;
+    }
+    .section-title {
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: .5px;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 14px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card h3 { margin: 0 0 8px; font-size: 16px }
+    .card p { margin: 0; color: #ddd; font-size: 13px }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .thumb {
+      width: 100%; aspect-ratio: 1/1; background: #111;
+      border-radius: 6px; border: 1px solid rgba(255,255,255,.08);
+    }
+    form.contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 800px){
+      .section-inner{ padding:0 12px; }
+      form.contact-grid { grid-template-columns: 1fr; }
+    }
+    footer {
+      text-align:center; padding: 20px; color: #777; font-size: 12px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.6);
+    }
+    /* Utility */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+  <header aria-label="メインナビゲーション">
+    <div class="nav">
+      <div class="logo" aria-label="クラブロゴ">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span class="logo-name" style="color:#ffd56a;">クラブ名</span>
+      </div>
+      <nav aria-label="サイトメニュー">
+        <ul>
+          <li><a href="#about">クラブについて</a></li>
+          <li><a href="#events">イベント</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <button class="cta gold" aria-label="予約する">予約する</button>
+    </div>
+  </header>
 
-1) 依頼分析（現状の解釈と方針）
-- 目的: 高級感・視認性・スマートフォン対応を重視したブランド統一感のある企業・店舗のホームページを公開すること。
-- ターゲット: 具体的な業種が未記載のため、富裕層・ビジネス層・デザイン感度の高いユーザーを想定。最小限の情報で信頼感を与え、問い合わせや予約/来訪の導線を確保。
-- デザイン方針: 高級感を演出するモダンでクリーンなデザイン。フォント・カラーはブランド統一感を重視。スマホ対応は必須。未準備の画像は差し替え前提の構成。
-- 制作物の範囲:
-  - ホームページ本体（index.html + 内部CSS/JSをHTML内に埋め込む前提）。
-  - 主要セクション案（トップ/概要/サービス/実績/料金（任意）/お問い合わせ/アクセス/ニュースなど）。
-  - 画像置き換え用のプレースホルダー構成。
-  - 必要に応じたSEO基礎要素（タイトル、メタディスクリプション等）の雛形。
-- 作業順序の骨子: 情報収集 -> ワイヤーフレーム案 -> デザイン案 -> HTML/CSS/最小JSの実装（index.html内に完結） -> コンテンツ差し替え・微調整 -> 最終確認・公開準備
-- 不明点の扱い: 未指定は仮案を用意し、後で確定情報に更新。
+  <main>
+    <section class="hero" id="top" aria-label="ヒーローセクション">
+      <div class="hero-inner">
+        <span class="badge" aria-label="最新情報タグ">
+          最新情報
+          <span style="display:inline-block;width:6px;height:6px;background:#ffd56a;border-radius:50%;" aria-hidden="true"></span>
+        </span>
+        <h1 class="title" style="color:#fff;">
+          黒とゴールドの高級感あるクラブ
+        </h1>
+        <p class="subtitle">
+          世界最高峰のナイトライフを演出。厳選された音響と演出、洗練された空間デザインで特別な夜を提供します。
+        </p>
+        <p class="subtitle" style="margin-top:0;">
+          現在の日時（ISO）：2026-10-17T04:17:39.907+09:00
+        </p>
+        <div class="hero-cta" aria-label="ヒーローCTA">
+          <button class="btn primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">イベント予約</button>
+          <button class="btn" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});">クラブについて</button>
+        </div>
+      </div>
+      <div class="scene" aria-label="ビジュアルエリア">
+        <!-- 未準備画像は後から差し替え可能なプレースホルダ -->
+        <!-- 画像を差し替える場合は背景画像を設定してください -->
+        <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#555; font-size:14px;">
+          ここにメインビジュアル画像を差し替え
+        </div>
+      </div>
+    </section>
 
-2) 仮案（未指定箇所の参照用。確定時に置換してください）
-- 店名: 仮案1「プレミアム・スタイル株式会社」／仮案2「SEIKO DESIGN LAB」など。正式店名はご提供ください。
-- キャッチコピー: 「時代を纏う、上質なデザインと機能美を。」（仮案）
-- カラーパレット案（高級感寄り）:
-  - パターンA: ダーク系基調（#1a1a1a / #f8f8f8 / アクセント金色 #cba56b）
-  - パターンB: ネイビー系基調（#0f1a2a / #ffffff / アクセントシルバー #b6b9c6）
-  - 未指定の場合はパターンAを推奨。正式カラーはご指示ください。
-- サイト構成案（最低限のセクション案）:
-  1) ヒーロー（トップ）: ロゴ・店名・キャッチコピー・CTA（お問い合わせ/来店予約）
-  2) 会社概要/ブランドメッセージ
-  3) 事業・サービス紹介（3 ～ 4点の代表メニュー/サービス）
-  4) 実績・お客様の声（任意、ダミーは置換可能）
-  5) 料金（未指定の場合は「要問い合わせ」表記のみ）
-  6) お問い合わせ/来店予約フォーム
-  7) アクセス・連絡先（住所・電話番号は未記載のままダミーは避け、必要情報が決定後に埋める方針）
-  8) 会社情報/プライバシー方針（フッター）
-- 画像・素材: 未準備のため、画像はプレースホルダー（後日差し替え可能）で設計。ロゴは未作成時はテキストのみの表示を想定。
-- フォント: 高級感のあるサンセリフ系（例：Montserrat, Raleway, Noto Sans JP など）を想定。正式決定時に指定。
-- アクセシビリティ: コントラスト、フォーカスリング、読み上げ順を意識した構造。
+    <section id="about" aria-label="クラブについてセクション">
+      <div class="section-inner">
+        <div>
+          <h2 class="section-title">クラブについて</h2>
+          <p class="section-sub">黒とゴールドを基調とした空間デザイン。洗練された音響と照明で、上質な夜を演出します。規模の大きさとプライベート感の両立を追求した設計。</p>
+        </div>
+        <div class="cards" aria-label="特長カード">
+          <article class="card" aria-label="特長1">
+            <div>
+              <h3>高級感ある空間デザイン</h3>
+              <p>黒とゴールドの配色で統一された内装。細部に宿るこだわり。</p>
+            </div>
+          </article>
+          <article class="card" aria-label="特長2">
+            <div>
+              <h3>プレミアムサウンド</h3>
+              <p>最先端の音響設計と最適化された音響空間。</p>
+            </div>
+          </article>
+          <article class="card" aria-label="特長3">
+            <div>
+              <h3>プライベートラウンジ</h3>
+              <p>VIPエリアでの特別な夜を演出します。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-3) 最小限の質問（確認・確定用）
-- 正式店名を教えてください。代替案が必要ですか？
-- キャッチコピー（任意）とサブコピーはどうしますか？未定の場合は仮案のままで進めてOKですか？
-- 主なカラーはどのパターンを希望しますか？（パターンA/パターンBのうち1つを選択、もしくは別カラーを指定）
-- サイトの主な構成は上記の構成案でよろしいですか？追加したいセクションがあれば教えてください。
-- 料金表の扱い: 「要問い合わせ」表示でよいですか、それともダミーの料金表を先に作成しますか？正式決定後に更新しますか？
-- 住所・電話番号・実績・所在地などの公開情報: 現時点では未記載で問題ありませんか？正式決定時に入力しますか？
-- 画像・動画の有無: 代替テキスト付きのプレースホルダーで問題ありませんか？
-- 公開時期の希望はありますか？（例：今月中、来月初など）
+    <section id="events" aria-label="イベントセクション">
+      <div class="section-inner">
+        <h2 class="section-title">最新イベント</h2>
+        <p class="section-sub">日程は随時更新。高品質な演出と厳選ラインアップをお届けします。</p>
+        <div class="cards" aria-label="イベントカード">
+          <article class="card" aria-label="イベント1">
+            <div>
+              <h3>イベント名例</h3>
+              <p>日時: 未定</p>
+            </div>
+            <button class="btn" onclick="alert('イベント詳細は後日公開します。')">詳細を見る</button>
+          </article>
+          <article class="card" aria-label="イベント2">
+            <div>
+              <h3>イベント名例</h3>
+              <p>日時: 未定</p>
+            </div>
+            <button class="btn" onclick="alert('イベント詳細は後日公開します。')">詳細を見る</button>
+          </article>
+          <article class="card" aria-label="イベント3">
+            <div>
+              <h3>イベント名例</h3>
+              <p>日時: 未定</p>
+            </div>
+            <button class="btn" onclick="alert('イベント詳細は後日公開します。')">詳細を見る</button>
+          </article>
+        </div>
+      </div>
+    </section>
 
-4) 作業指示書（Design AI / Web制作AI / 品質チェックAIへ渡す想定の指示案）
-- Design AI へ
-  - 目的: 高級感・視認性・スマホ対応・ブランド統一感のあるデザイン案作成
-  - ターゲット: 上質さを求める法人・個人顧客
-  - デザイン要件: ダーク系またはネイビー系の高級配色、強いコントラスト、余白を活かしたレイアウト、読みやすい日本語フォント、レスポンシブ対応
-  - コンテンツ仮案: ヒーローに店名・キャッチコピー・CTA、サービス3点、実績・お問い合わせ、アクセス
-  - 紐付素材: ロゴは未確定のためテキスト併用、プレースホルダー画像を使用
-  - 出力形式: index.html 用の内蔵CSS/JSと、デザインモックアップ（Figma等がある場合はリンク）
-- Web制作AI へ
-  - 目的: index.html 内に全てのHTML/CSS/JavaScriptを実装
-  - 技術要件: HTML5 + CSS3 + 最小限のJavaScript。CSS/JSはHTML内に埋め込み。外部ファイルは使用せず、index.html 単体で動作
-  - レイアウト: セクションごとにセマンティック要素を活用
-  - アクセシビリティ: コントラスト比、適切なaltテキスト、aria-label の活用
-  - 画像: プレースホルダーを使用。正式決定時に差し替え可能な構造を維持
-  - スマホ対応: ビューポート設定、メディアクエリでの調整
-  - 仕上げ: 高級感を損なわないタイポグラフィと間隔
-  - 出力: index.html のみを返却。コメント等は必要最小限
-- 品質チェックAI へ
-  - 目的: アクセシビリティ、パフォーマンス、SEOの基本チェック、コード整合性
-  - チェック項目例: レスポンシブ動作、テキストの可読性、リンク動作、フォームの検証（未実装の場合はフォーム要件の明記）、メタ情報の有無、画像代替テキスト、読み込み速度、HTMLの文法エラーの有無
-  - 出力: 問題点と修正リストを報告
+    <section id="gallery" aria-label="ギャラリーセクション">
+      <div class="section-inner">
+        <h2 class="section-title">ギャラリー</h2>
+        <p class="section-sub">未準備の画像は後から差し替え可能です。</p>
+        <div class="gallery" aria-label="ギャラリー画像">
+          <div class="thumb" style="background: #111;"></div>
+          <div class="thumb" style="background: #222;"></div>
+          <div class="thumb" style="background: #333;"></div>
+          <div class="thumb" style="background: #444;"></div>
+          <div class="thumb" style="background: #555;"></div>
+          <div class="thumb" style="background: #666;"></div>
+        </div>
+      </div>
+    </section>
 
-5) 次のアクション
-- 上記の質問に回答いただければ、正式な店名・カラー・構成・テキストを確定し、HTMLコードの作成に入ります。
-- 回答いただくタイミングに合わせて、以下を順次実行します:
-  1) 最終仕様の確定とワイヤーフレーム案の提示
-  2) Design AI によるデザイン案作成
-  3) Web制作AI による index.html の実装（HTML5 + CSS + 最小JS、全て1つのファイルに収める）
-  4) 品質チェックAI による検証・修正案の共有
-  5) 最終確認後、公開準備へ進行
+    <section id="contact" aria-label="お問い合わせセクション">
+      <div class="section-inner">
+        <h2 class="section-title">お問い合わせ</h2>
+        <p class="section-sub">未指定の住所・電話・料金・実績などは未記載のままにしています。正式なお問合せは情報を提供してください。</p>
+        <form class="contact-grid" onsubmit="return false;" aria-label="お問い合わせフォーム">
+          <div>
+            <label for="name" class="sr-only">お名前</label>
+            <input id="name" name="name" type="text" placeholder="お名前" style="width:100%; padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" required />
+          </div>
+          <div>
+            <label for="email" class="sr-only">メールアドレス</label>
+            <input id="email" name="email" type="email" placeholder="メールアドレス" style="width:100%; padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" required />
+          </div>
+          <div>
+            <label for="subject" class="sr-only">件名</label>
+            <input id="subject" name="subject" type="text" placeholder="件名" style="width:100%; padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" />
+          </div>
+          <div>
+            <label for="message" class="sr-only">お問い合わせ内容</label>
+            <textarea id="message" name="message" rows="4" placeholder="お問い合わせ内容" style="width:100%; padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff;" required></textarea>
+          </div>
+          <div style="grid-column: 1 / -1; text-align:right;">
+            <button class="btn primary" type="submit" onclick="alert('お問い合わせは現在ダミーです。実際の送信は実装してください。')">送信</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
 
-ご希望の店名・カラー・サイト構成・正式な運用情報をご提供ください。いただいた情報を元に、すぐに作業に着手します。なお、現在の依頼情報だけではHTMLコードの生成は行いません。確定情報を頂き次第、直ちに完成版HTMLを生成します。
+  <footer>
+    © クラブ名 - 未設定の住所・電話番号・料金・実績などは未記載です
+  </footer>
+
+  <script>
+    // ダミーの現在時刻をISO表示（依頼文の時刻を反映して表示する例）
+    (function(){
+      // もしリアルタイム表示が必要なら以下を有効化
+      // const now = new Date();
+      // document.querySelector('.subtitle[aria-label]').textContent = '現在時刻: ' + now.toISOString();
+    })();
+  </script>
+</body>
+</html>
