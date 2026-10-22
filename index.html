@@ -1,72 +1,170 @@
-以下の依頼情報だけでは完成したホームページを作成できません。高品質な「高級感・視認性・スマートフォン対応・使いやすさ・ブランドの統一感」を満たすため、必要な情報を最小限に絞って確認させてください。確認後、作業順序に沿って制作します。
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ラウンジ - 高級感のある黒とゴールド</title>
+  <meta name="description" content="黒とゴールドを基調とした高級感のあるラウンジのイメージに合うホームページ。視認性・スマートフォン対応・ブランドの統一感を重視。">
+  <style>
+    :root{
+      --bg: #0b0b0d;
+      --fg: #f6f3e9;
+      --gold: #d4af37;
+      --gold-dark: #b98a2a;
+      --muted: #a79a8e;
+      --card: #14161a;
+    }
+    *{box-sizing:border-box}
+    html, body { margin:0; padding:0; height:100%; background:var(--bg); color:var(--fg); font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    a{ color: var(--gold); text-decoration: none; }
+    header{ position: sticky; top:0; z-index: 100; background: rgba(0,0,0,0.75); backdrop-filter: blur(2px); border-bottom: 1px solid rgba(212,172,55,0.25); }
+    .container{ width: min(1100px, 92%); margin: 0 auto; }
+    .nav{ display:flex; align-items:center; justify-content:space-between; padding: 14px 0; }
+    .brand{ display:flex; align-items: center; gap:12px; }
+    .brand-logo{ width:28px; height:28px; border-radius:6px; background: linear-gradient(135deg, #000 0%, #1a1a1a 60%, #000 100%); box-shadow: inset 0 0 0 1px rgba(255,215,0,.6); }
+    .brand-name{ font-weight:700; letter-spacing:.5px; color:#fff; font-size:1.05rem; }
+    nav ul{ list-style:none; display:flex; gap:20px; padding:0; margin:0; align-items:center; }
+    nav li a{ color:#e8e0c2; padding:8px 12px; border-radius:6px; transition: all .2s ease; }
+    nav li a:hover{ background: rgba(212,172,55,0.25); color:#fff; }
+    .hero{ position:relative; height:70vh; min-height:420px; display:flex; align-items:center; justify-content:flex-start; padding: 0 0; overflow:hidden; border-bottom:1px solid rgba(212,172,55,0.25);}
+    /*背景画像 placeholder*/
+    .hero__bg{ position:absolute; inset:0; background-size:cover; background-position:center; filter: saturate(105%) contrast(105%); }
+    .hero__overlay{ position:absolute; inset:0; background: rgba(0,0,0,0.45); }
+    .hero__content{ position:relative; z-index:1; max-width: 700px; padding: 40px; margin-left: 5%; }
+    .tag{ display:inline-block; padding:8px 14px; border-radius:999px; background: rgba(212,172,55,0.15); color:#e8d59b; border:1px solid rgba(212,172,55,0.4); font-weight:600; letter-spacing:.5px; }
+    .hero h1{ font-size: clamp(2rem, 3vw + 1rem, 3.5rem); line-height:1.05; margin:14px 0 12px; color:#fff; text-shadow: 0 2px 8px rgba(0,0,0,.5); }
+    .hero p{ font-size:1.05rem; color:#e8e3cf; max-width:520px; }
+    .cta{ display:inline-flex; align-items:center; gap:12px; margin-top:18px; padding:12px 18px; border-radius:8px; background: var(--gold); color:#111; font-weight:700; text-decoration:none; box-shadow: 0 6px 18px rgba(212,172,55,0.5); }
+    .cta.secondary{ background: rgba(255,255,255,0.08); border:1px solid rgba(212,172,55,0.6); color:#f6f2e0; }
+    .scroll{ position:absolute; bottom:18px; left:50%; transform:translateX(-50%); color:#e8e0c2; font-size:.9rem; opacity:.9; }
+    main{ padding: 60px 0; }
+    .section{ padding:40px 0; }
+    .card-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:22px; }
+    .card{ background: rgba(20,22,26,0.75); border:1px solid rgba(212,172,55,0.4); border-radius:12px; padding:18px; min-height:120px; }
+    .card h3{ margin:0 0 8px; font-size:1.05rem; color:#fff; }
+    .card p{ margin:0; color:#e9e1cf; font-size:.95rem; }
+    footer{ padding:30px 0; border-top:1px solid rgba(212,172,55,0.25); color:#d9d6c8; text-align:center; font-size:.9rem; }
+    /* 未指定部分は捏造せず、ダミー要素を用意して後付け可能にする */
+    .placeholder{ display:none; }
+    @media (max-width: 800px){
+      .hero{ height: 60vh; min-height: 300px; }
+      .hero__content{ margin-left:4%; padding: 20px; }
+      nav ul{ display:none; } /* 簡易レスポンシブ対応用 - 必要に応じて後述のメニューを追加可 */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav" aria-label="グローバルナビゲーション">
+      <div class="brand">
+        <div class="brand-logo" aria-label="ブランドロゴ"></div>
+        <div class="brand-name">LUXE LOUNGE</div>
+      </div>
+      <nav aria-label="サイト内リンク">
+        <ul>
+          <li><a href="#about">ブランド</a></li>
+          <li><a href="#approach">特徴</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-1) 現時点の理解と提案（仮案として進める場合の前提）
-- 仮案のページ構成（未確定情報は仮置き・後から差し替え可能）
-  - ヒーローセクション：店名・キャッチコピー・CTAボタン
-  - 事業・サービス紹介
-  - 実績・事例（任意の画像＋テキスト）
-  - お知らせ/新着情報（任意）
-  - アクセス・店舗情報（住所・地図・連絡先は未確定の場合は仮置き）
-  - お問い合わせセクション（フォーム、電話・メール）
-- デザイン方針
-  - 高級感: 洗練されたタイポグラフィ、落ち着いた配色、余白の確保
-  - 視認性: 大きめの見出し、読みやすい本文、コントラスト高め
-  - スマートフォン対応: 1ページ完結型のレスポンシブ、ナビゲーションはハンバーガーメニュー
-  - ブランド統一感: 指定カラーやフォントを優先
-- HTML/CSS/最小限JSでの実装方針
-  - index.html 1ファイルで完結（外部ファイル分離せず、CSSとJSは内嵌）
-  - 画像は未準備の場合でも差し替え可能な構造（img要素に代替テキストのみ）
-  - 未指定の情報は「仮案」として明記
+  <main>
+    <section class="hero" aria-label="ヒーローセクション">
+      <div class="hero__bg" role="img" aria-label="黒とゴールドのラウンジの高級感あふれる写真">
+        <!-- 未準備の場合は後から差し替え可能なプレースホルダ:
+             画像ファイル名は lounge-luxury-placeholder.jpg などを後日生成画像に差し替え -->
+        background-image: url('images/lounge-luxury-placeholder.jpg');
+      </div>
+      <div class="hero__overlay"></div>
+      <div class="hero__content">
+        <span class="tag">高級感・黒とゴールド</span>
+        <h1>黒とゴールドのラウンジで、上質なひとときを。</h1>
+        <p>視認性と使いやすさを両立したデザイン。スマートフォン対応、ブランドの統一感を大切にしたWeb体験をご提供します。</p>
+        <a href="#contact" class="cta" role="button">お問い合わせ・ご予約</a>
+        <a href="#about" class="cta secondary" role="button" style="margin-left:12px;">ブランドについて</a>
+      </div>
+      <div class="scroll" aria-hidden="true">Scrolling ↓</div>
+    </section>
 
-2) すぐに決定・提出していただきたい最小情報（必須項目を優先）
-- 店名（ブランド名）とロゴの有無（ロゴを後から差し替え可能な構成でOKか）
-- カラーパレットの希望
-  - 例: 基調色2色＋アクセント1色（HEXで指定可能）
-- テキストの基本コンテンツ
-  - キャッチコピー（ヒーローの一言）
-  - サービス・事業内容の箇条書き（3〜6点程度）
-  - 会社情報（住所・電話番号・メール、実績・料金は未確定時は「未記載」扱いでOKか）
-  - お問い合わせの案内文（例：「ご依頼・お問い合わせは以下フォームから」など）
-- 画像・素材の有無
-  - ロゴ以外の写真素材（未準備の場合は「後から差し替え可能」表記でOKか）
-- 連絡先・地図対応
-  - 住所の有無、電話番号、料金表示の有無
-  - 地図埋め込みの有無（Googleマップ等）
-- 想定ターゲットとトーン
-  - B2B/一般消費者、どの層を想定
-  - 具体的な雰囲気（例：クラシック・モダン・ミニマル・ラグジュアリーのどれか）
-- 追加機能の希望
-  - お問い合わせフォーム、SNSリンク、ニュース/ブログ機能、実績ギャラリー、地図表示、予約・見積り機能など
+    <section id="about" class="section" aria-label="ブランド紹介">
+      <div class="container">
+        <h2 style="font-size:1.6rem; margin-bottom:14px; color:#fff;">ブランド紹介</h2>
+        <p style="color:#e9e0c0; max-width:740px; line-height:1.7;">
+          未指定の店名・住所・料金・実績などの情報は、依頼時に確定した時点で反映します。本プロジェクトでは高級感・視認性・スマートフォン対応を最優先に、ブランドの統一感を崩さずに更新します。
+        </p>
+      </div>
+    </section>
 
-3) 作業順序（実行しやすい順、承認後に着手します）
-- ステップ1：要件確定
-  - 上記の必須情報を確認・確定
-  - 未指定は仮案として記載
-- ステップ2：ワイヤーフレームとデザイン指示書作成
-  - ヘッダー構成、セクションの順序、タイポグラフィ、カラー、UI要素のスタイルを决定
-- ステップ3：HTML/CSS/少量JSの実装
-  - index.htmlを1ファイルで完結、スマホ対応のレスポンシブ設計
-  - 画像は未準備の場合でも差し替え可能なプレースホルダ構造
-- ステップ4：コンテンツ適用と微調整
-  - 店名・キャッチコピー・サービス文言を差し替え
-  - 色味・文字サイズ・余白の最適化
-- ステップ5：品質チェック
-  - 高級感・視認性・スマホ対応・使いやすさ・ブランド統一の検証
-- ステップ6：最終確認と公開準備
-  - 未確定情報は「未記載」扱いで公開せず、最終チェック後に公開
-- ステップ7：納品前の確認依頼
-  - 実際の公開が完了したことを確認した上で報告
+    <section id="approach" class="section" aria-label="デザインと制作方針">
+      <div class="container">
+        <h2 style="font-size:1.6rem; margin-bottom:14px; color:#fff;">デザインと制作方針</h2>
+        <div class="card-grid">
+          <div class="card">
+            <h3>目的</h3>
+            <p>高級感のある黒とゴールドを軸に、ブランドの信頼性と来訪者の導線を最適化。</p>
+          </div>
+          <div class="card">
+            <h3>ターゲット</h3>
+            <p>高所得層・ラグジュアリーブランドを好む層、快適な体験を求めるスマートフォンユーザー。</p>
+          </div>
+          <div class="card">
+            <h3>デザイン方針</h3>
+            <p>高コントラスト、読みやすさ、統一感のあるカラーリング、アニメーションは控えめ。</p>
+          </div>
+          <div class="card">
+            <h3>制作物</h3>
+            <p>HTML5/CSS/最小限のJSで完結。画像は差し替え可能な構成。後日公開確認を前提に進行。</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-4) 不明点の追加質問（最小限）
-- 店名と希望するキャッチコピーを教えてください（未確定場合は仮案を用意します）。
-- 配色イメージを2〜3案提示いただけますか（例: ダーク系&ゴールド、ネイビーブルー&シルバーなど）。
-- 住所・電話番号・料金表示の有無、および実績の公開可否をどうしますか？
-- 画像素材の有無と差替時の想定ファイル形式（PNG/JPG/WebPなど）。
-- お問い合わせフォームに必須項目（名前・メール・内容など）と、送信後の表示メッセージを指定しますか？
-- 地図の埋め込みが必要ですか（住所が確定していればGoogleマップで埋め込み可能）？
+    <section id="gallery" class="section" aria-label="ギャラリー（仮）">
+      <div class="container">
+        <h2 style="font-size:1.6rem; margin-bottom:14px; color:#fff;">ギャラリー（仮）</h2>
+        <p style="color:#e9e0c0;">未準備の画像は後から差し替え可能な構成です。現在はプレースホルダーを使用しています。</p>
+        <div class="card-grid placeholder" aria-hidden="true">
+          <!-- 将来の置換用のプレースホルダカード -->
+          <div class="card">
+            <h3>画像1</h3>
+            <p>差替予定のダミー</p>
+          </div>
+          <div class="card">
+            <h3>画像2</h3>
+            <p>差替予定のダミー</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-次の回答にて、以下を確定させてください。
-- 店名・キャッチコピー（仮案可）、カラー案、主要サービス、連絡先情報（仮可）、ターゲット像、希望する機能リスト
-- 画像素材の有無と差替時の対応方針
+    <section id="contact" class="section" aria-label="お問い合わせ">
+      <div class="container">
+        <h2 style="font-size:1.6rem; margin-bottom:14px; color:#fff;">お問い合わせ</h2>
+        <p style="color:#e9e0c0; max-width:700px;">実際の店舗情報（住所・電話番号など）は未指定のままです。確定後に反映します。</p>
+        <form action="#" method="post" style="display:flex; flex-direction:column; gap:12px; max-width:700px;">
+          <input aria-label="お名前" placeholder="お名前" style="padding:12px; border-radius:6px; border:1px solid rgba(212,172,55,.6); background:#111; color:#fff;" />
+          <input aria-label="メールアドレス" placeholder="メールアドレス" type="email" style="padding:12px; border-radius:6px; border:1px solid rgba(212,172,55,.6); background:#111; color:#fff;" />
+          <textarea aria-label="ご用件" placeholder="ご用件を入力してください" rows="4" style="padding:12px; border-radius:6px; border:1px solid rgba(212,172,55,.6); background:#111; color:#fff;"></textarea>
+          <button type="submit" class="cta" style="width:max-content;">送信</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
-確定情報をいただければ、すぐにホームページの設計指示書を作成し、HTMLコード（index.html）とともに納品準備を進めます。なお、HTMLコードは指定どおり「index.html1枚」で完成する形で、未指定項目は仮案として反映します。
+  <footer aria-label="フッター">
+    <div class="container" style="font-family:inherit;">
+      © 2026 LUXE LOUNGE. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- 未準備の画像を後で差し替える前提のダミー構成。実装時には lounge-luxury-placeholder.jpg を生成画像に差替え -->
+  <script>
+    // 必要に応じてJSを最小限に。現状は軽微な相互作用のみを提供。
+    // 例: 画面ロード時の軽いフェードイン演出追加を検討可能
+  </script>
+
+</body>
+</html>
