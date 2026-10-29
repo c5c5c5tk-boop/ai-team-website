@@ -1,65 +1,233 @@
-以下を基に高品質なホームページを制作します。現在、依頼内容には店名・配色・文章・住所・電話番号・実績などの基本情報が不足しています。完成物を正確に反映するため、最小限の情報だけご確認させてください。ご回答をいただき次第、指示に沿って制作を進め、完成HTMLコードをお届けします。
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Elegant Studio - 高品質Web制作 & 画像制作</title>
+  <style>
+    :root{
+      --bg: #0e0e10;
+      --fg: #f5f5f7;
+      --muted:#b9bac4;
+      --accent: #8a8dff;
+      --card: #141419;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;height:100%}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
+      color:var(--fg);
+      background: #0b0b0e;
+      background: radial-gradient( circle at 20% -10%, rgba(138,141,255,.25), transparent 40% ),
+                  radial-gradient( circle at 100% 0%, rgba(255,255,255,.04), transparent 40% ),
+                  linear-gradient(#0b0b0e,#0b0b0e);
+    }
+    a{color:inherit;text-decoration:none}
+    header{
+      position: sticky; top:0; z-index: 50;
+      background: rgba(10,10,12,.8);
+      backdrop-filter: saturate(1.2) blur(6px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto; padding:14px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{display:flex; align-items:center; gap:12px}
+    .brand .logo{
+      width:34px; height:34px; border-radius:8px;
+      background: linear-gradient(135deg, #2e2a55, #1b1a2a);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: inset 0 0 6px rgba(255,255,255,.15);
+    }
+    .brand-title{font-weight:700; letter-spacing:.5px}
+    nav ul{list-style:none; display:flex; gap:18px; margin:0; padding:0}
+    nav a{color:#e8e8f5; font-size:14px; padding:8px 12px; border-radius:6px}
+    nav a:hover{background: rgba(255,255,255,.08)}
+    .hero{
+      position: relative; height: 68vh; min-height:420px; display:flex; align-items:center;
+      justify-content:center; text-align:center; overflow:hidden;
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0;
+      background: url('images/test-image-01.webp') center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+      z-index:-1;
+    }
+    .overlay{
+      position: absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.75));
+      z-index:0;
+    }
+    .hero-content{ position:relative; z-index:1; padding:0 20px; max-width:980px }
+    .tag{ display:inline-block; padding:8px 14px; border-radius:999px; background: rgba(138,141,255,.25); color:#e8eaff; font-weight:600; font-size:12px; letter-spacing:.5px; margin-bottom:14px; border:1px solid rgba(138,141,255,.5)}
+    h1{ font-size: clamp(28px, 4vw, 52px); margin:8px 0 12px; font-weight:800; line-height:1.05; text-shadow:0 2px 14px rgba(0,0,0,.4)}
+    p.lead{ font-size: clamp(14px, 2vw, 18px); color:#e9e9f0; max-width:720px; opacity:.95}
+    .btns{ margin-top:20px; display:flex; gap:12px; flex-wrap:wrap; justify-content:center}
+    .btn{
+      padding:12px 20px; border-radius:8px; border:1px solid rgba(255,255,255,.25);
+      background: linear-gradient(135deg, rgba(138,141,255,.9), rgba(100,102,255,.75));
+      color:white; font-weight:700; cursor:pointer;
+      transition: transform .2s ease;
+    }
+    .btn.secondary{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.25);
+      color:#eaeaf0;
+    }
+    .btn:active{ transform: translateY(1px) scale(0.99) }
 
-確認したい最小限の情報
-- 店名（必須） and その読みやすい表記
-- コンセプト・目的
-  - 例：ブランド強化、商品・サービスの紹介、予約機能、問い合わせ、オンライン購入など
-- カラースキームの希望
-  - 例：高級感のある黒系＋ゴールド、清潔感のある白系＋青、など
-- 想定する主要セクション
-  - 例：トップヒーロー、サービス/商品紹介、実績・事例、お知らせ、料金、アクセス・地図、件名問い合わせフォーム、CTA（予約・問い合わせ）
-- 文章（必須）
-  - 企業説明、キャッチコピー、各セクションの本文案（未用意であれば私の方で仮案を作成してもよいです。許可をください）
-- 連絡先情報
-  - 住所、電話番号、メール、営業時間（未指定の場合は公開情報として捏造はせず掲載しません）
-- 画像・ロゴの有無
-  - ロゴファイルの有無、未準備の場合は画像は後から差し替え可能で良いか
-- 料金・実績・アクセス情報の掲載有無
-  - 未指定の場合は「仮案として未掲載」または「要件に応じて後日追加」にします
-- ドメイン・公開先の想定
-  - 例：独自ドメイン公開、スピンオフ用ミニサイト、スマホ対応を最優先
-- 言語
-  - 日本語のみでよいか、他言語対応が必要か
-- SEO・メタ情報
-  - キーワード、メタディスクリプションの希望があれば
+    main{ max-width:1100px; margin:40px auto; padding:0 20px; }
 
-デザイン方針案（決定前の仮案として提示します）
-- 高級感と視認性を両立するデザイン
-  - タイポグラフィ：サンセリフ系をベースに、見出しは太め・力強く
-  - 色：ベースは落ち着いたニュートラル（黒/グレー系）に、アクセントとしてゴールドまたはブランドカラーを使用
-  - 余白とグリッド：十分な余白とレスポンシブ対応のカード型セクション
-- スマートフォン対応
-  - 1カラム中心のレイアウト、タッチ操作を意識したナビ、読みやすいフォントサイズ
-- ブランドの統一感
-  - ロゴ周りの一貫性、同一テンプレート内のボタン・リンクスタイル統一
-- 画像・動画
-  - 後から差し替え可能なプレースホルダで構成
-  - 可能であれば hero 部は背景画像または動画風のグラデーションを用意
-- アクセス性
-  - メニューは固定・もしくはスムーズなスクロール、altテキスト付き画像
+    section{ margin:60px 0; }
+    .section-title{ font-size: clamp(22px, 3.5vw, 32px); font-weight:800; margin-bottom:6px; }
+    .section-sub{ color:var(--muted); margin-bottom:18px; }
 
-作業の進め方（合意後の実作業フロー）
-1) 情報確定フェーズ（あなたからの回答を待機）
-   - 上記の必須情報をいただく
-2) デザイン設計
-   - ワイヤーフレーム（主要セクションの配置案）とカラー・タイポグラフィの決定
-3) HTML/CSS/最低限のJS実装
-   - index.html 単体で動作する形で、HTML5/CSS/必要最低限のJSを内包
-   - すべてのテキストはご提供いただいた内容を反映、未指定は仮案として明示
-   - 画像はプレースホルダを使用。後から差し替え可能な構成にする
-4) 品質チェック
-   - 高級感・視認性・スマホ対応・使いやすさ・ブランド統一感の検証
-5) 最終確認・修正
-   - あなたのフィードバックを反映して最終化
-6) 公開・検証
-   - 公開前に再度確認を行い、公開完了の報告は「実際に公開が確認できてから」おこないます
+    .grid{ display:grid; gap:20px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .card{
+      background: linear-gradient(180deg, rgba(20,20,26,.9), rgba(20,20,26,.75));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px; padding:16px; box-shadow: var(--shadow);
+    }
+    .card img{ width:100%; height:180px; object-fit:cover; border-radius:10px; background:#111; }
+    .card h3{ margin:12px 0 6px; font-size:18px}
+    .card p{ color:#d6d6e3; font-size:14px; margin:0 }
 
-次のアクション
-- 上記の必須情報をご回答ください。すべて整えば、すぐにHTMLコードの作成に入ります。
-- もし、現時点でデザインの方向性を私に任せたい場合は、以下の仮案を最小限の情報で適用します（店舗名・カラーは仮設定です。正式情報は後で差し替え可能）。
-  - 店名: 例）YourBrand（ご希望があれば置換）
-  - 配色案: ダークグレー/黒を基調に、アクセントにゴールド
-  - セクション案: ヒーロー画像 + キャッチコピー、サービス/商品紹介、実績・お客様の声、料金・比較、アクセス・問い合わせ、フッター
-  - テキスト案: キャッチコピー、サービス説明、連絡先などは仮文を使用
+    footer{ text-align:center; padding:40px 20px; color:#9aa0a6; font-size:13px; }
 
-ご回答をいただき次第、正式な制作を開始します。
+    @media (max-width: 700px){
+      .hero{ height: 60vh; min-height: 320px; }
+      .brand{ gap:8px }
+      .brand .logo{ width:28px; height:28px }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand" aria-label="ブランド">
+        <div class="logo" aria-hidden="true">
+          <!-- simple emblem -->
+          <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10" cy="10" r="9" stroke="white" stroke-opacity="0.8" />
+            <path d="M6 12 L10 6 L14 12" stroke="white" stroke-width="1.5" />
+          </svg>
+        </div>
+        <span class="brand-title">Elegant Studio</span>
+      </div>
+      <nav aria-label="サイトナビゲーション">
+        <ul>
+          <li><a href="#services">サービス</a></li>
+          <li><a href="#work">実績</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="ヒーロー">
+    <div class="overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="tag">Web制作 & 画像制作</span>
+      <h1>高品質なWebサイトを、ブランドの輝きへと昇華させる。</h1>
+      <p class="lead">高度なデザインと機能性を兼ね備えた、レスポンシブ対応の企業サイト。写真はプロが選ぶ自然な美を追求します。</p>
+      <div class="btns">
+        <button class="btn" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">サービスを確認</button>
+        <button class="btn secondary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">実績を見る</button>
+      </div>
+      <div id="isoInfo" style="margin-top:16px; font-size:13px; color:#e9e9f0; opacity:.95;">
+        ISOタイム: <span id="isoString">2026-10-29T22:53:51.166+09:00</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="services" aria-label="サービス">
+      <h2 class="section-title">私たちの提供サービス</h2>
+      <p class="section-sub">ブランドの魅力を最大限に引き出す、戦略的なWeb制作と写真表現。</p>
+      <div class="grid">
+        <article class="card" aria-label="サービス: ウェブデザイン">
+          <img src="images/test-image-01.webp" alt="美しいウェブデザインのイメージ" />
+          <h3>ウェブデザイン</h3>
+          <p>高級感のあるデザインで、UXを最適化。スマホとPC双方に最適化したレスポンシブ対応。</p>
+        </article>
+        <article class="card" aria-label="サービス: コーディング">
+          <img src="images/test-image-01.webp" alt="コードとデザインの協調イメージ" />
+          <h3>フロントエンド開発</h3>
+          <p>HTML5/CSS/JavaScriptで、高品質なコーディングとパフォーマンス最適化を実施。</p>
+        </article>
+        <article class="card" aria-label="サービス: 画像制作">
+          <img src="images/test-image-01.webp" alt="プロが撮影した写真風の美しい素材" />
+          <h3>画像制作</h3>
+          <p>実際の写真に近い自然さを追求。粒状感・過剰な光沢を排除し、自然な質感を提供。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" aria-label="実績">
+      <h2 class="section-title">実績ギャラリー</h2>
+      <p class="section-sub">プロフェッショナルなデザインと写真の組み合わせで、ブランドの価値を高めます。</p>
+      <div class="grid" aria-label="実績グリッド">
+        <article class="card">
+          <img src="images/test-image-01.webp" alt="実績1のサンプル画像" />
+          <h3>ブランドサイトの再構築</h3>
+          <p>エレガントなUI/UXと高速なパフォーマンスを両立した事例。</p>
+        </article>
+        <article class="card">
+          <img src="images/test-image-01.webp" alt="実績2のサンプル画像" />
+          <h3>ECサイトのビジュアル統一</h3>
+          <p>写真とカラーの統一感で購買意欲を促進。</p>
+        </article>
+        <article class="card">
+          <img src="images/test-image-01.webp" alt="実績3のサンプル画像" />
+          <h3>企業パンフレットデジタル版</h3>
+          <p>ブランドガイドに沿ったデザインとレイアウト設計。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-label="お問い合わせ">
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="section-sub">高品質なWebサイト制作のご相談はお気軽に。仮情報でのプレースホルダーを使用しています。</p>
+      <div class="grid" aria-label="お問い合わせフォーム代替">
+        <div class="card" style="grid-column: span 2;">
+          <h3>ご依頼内容（プレースホルダー）</h3>
+          <p>・ブランド名: Elegant Studio<br>
+             ・担当者: 山田 太郎<br>
+             ・希望納期: 2ヶ月程度<br>
+             ・連絡先メール: info@example.com</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer aria-label="フッター">
+    <p>&copy; 2026 Elegant Studio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // ISO日付を表示（受け取ったISOをそのまま表示）
+    (function(){
+      const isoElem = document.getElementById('isoString');
+      const iso = "2026-10-29T22:53:51.166+09:00";
+      isoElem.textContent = iso;
+
+      // 目安として、ISOを解釈して人間が読める形式にも表示可能
+      try{
+        const d = new Date(iso);
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute:'2-digit', second:'2-digit', timeZoneName:'short' };
+        const human = d.toLocaleString('ja-JP', options);
+        const span = document.createElement('span');
+        span.style.marginLeft = '10px';
+        span.style.color = '#e9e9f0';
+        span.textContent = ` (${human})`;
+        isoElem.parentElement.appendChild(span);
+      }catch(e){
+        // ignore if parsing fails
+      }
+    })();
+  </script>
+</body>
+</html>
