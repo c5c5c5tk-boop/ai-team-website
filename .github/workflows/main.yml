@@ -1,0 +1,19 @@
+name: AI Team Poster Workflow
+
+on:
+workflow_dispatch:
+
+permissions:
+contents: read
+
+jobs:
+poster-check:
+runs-on: ubuntu-latest
+steps:
+- name: Check repository
+uses: actions/checkout@v4
+
+- name: Check poster generator
+run: |
+test -f poster-generator/index.html
+echo "Poster Studio is ready"
